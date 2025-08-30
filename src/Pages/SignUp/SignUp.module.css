@@ -1,0 +1,24 @@
+.signUpWrapper {
+    display: flex;
+    justify-content: center;
+
+    padding: 16px 0;
+}
+
+.signUp {
+    max-width: 450px;
+    width: 100%;
+}
+
+.signUpForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.signUpLinkToLogin {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
