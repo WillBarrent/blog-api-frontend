@@ -3,15 +3,17 @@ import AuthContent from "../../Components/AuthContent/AuthContent";
 import Field from "../../Components/Field/Field";
 import FormButton from "../../Components/FormButton/FormButton";
 import styles from "./SignUp.module.css";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   async function signUpUser() {
-    await fetch("http://localhost:3000/api/auth/sign-up", {
+    const user = await fetch("http://localhost:3000/api/auth/sign-up", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -20,7 +22,7 @@ function SignUp() {
       body: JSON.stringify({ email, username, password }),
     });
     
-    useNavigate("/login");
+    navigate("/login");
   }
 
   return (
