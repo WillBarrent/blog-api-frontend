@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthContent from "../../Components/AuthContent/AuthContent";
 import Field from "../../Components/Field/Field";
 import FormButton from "../../Components/FormButton/FormButton";
 
 import styles from "./Login.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,6 +12,12 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
 
   async function login() {
     const user = await fetch("http://localhost:3000/api/auth/login", {
@@ -37,9 +43,9 @@ function Login() {
       <div className={styles.login}>
         <AuthContent />
         <form className={styles.loginForm} action={login}>
-          <Field name="Email" handleChange={setEmail}/>
-          <Field name="Username" handleChange={setUsername}/>
-          <Field name="Password" handleChange={setPassword}/>
+          <Field name="Email" handleChange={setEmail} />
+          <Field name="Username" handleChange={setUsername} />
+          <Field name="Password" handleChange={setPassword} />
           <FormButton buttonText="Login" />
           <div className={styles.loginLinkToSignUp}>
             Don't have an account?

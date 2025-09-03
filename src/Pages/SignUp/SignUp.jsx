@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthContent from "../../Components/AuthContent/AuthContent";
 import Field from "../../Components/Field/Field";
 import FormButton from "../../Components/FormButton/FormButton";
@@ -12,6 +12,12 @@ function SignUp() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
+
   async function signUpUser() {
     await fetch("http://localhost:3000/api/auth/sign-up", {
       method: "POST",
@@ -21,7 +27,7 @@ function SignUp() {
       },
       body: JSON.stringify({ email, username, password }),
     });
-    
+
     navigate("/login");
   }
 
