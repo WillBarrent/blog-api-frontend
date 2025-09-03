@@ -3,6 +3,8 @@ import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Header() {
+  const isUserLoggedIn = localStorage.getItem("token");
+
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
@@ -20,8 +22,17 @@ function Header() {
           </div>
         </div>
         <div className={styles.headerProfile}>
-          <div className={styles.headerLogin}><Link className={styles.headerLoginLink} to="/login">Login</Link></div>
-          <div className={styles.headerSignUp}><Link className={styles.headerSignUpLink} to="/sign-up">Create Account</Link></div>
+          {isUserLoggedIn
+            ?
+            (<div className={styles.headerProfileInfo}>Profile</div>)
+            :
+            (
+              <>
+                <div className={styles.headerLogin}><Link className={styles.headerLoginLink} to="/login">Login</Link></div>
+                <div className={styles.headerSignUp}><Link className={styles.headerSignUpLink} to="/sign-up">Create Account</Link></div>
+              </>
+            )
+          }
         </div>
       </div>
     </header>

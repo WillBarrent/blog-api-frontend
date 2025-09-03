@@ -88,7 +88,7 @@
   justify-content: center;
 }
 
-.headerSignUp {
+.headerSignUp, .headerProfileInfo {
   display: flex;
   align-items: center;
   justify-content: center;
