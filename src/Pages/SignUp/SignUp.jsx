@@ -3,7 +3,7 @@ import AuthContent from "../../Components/AuthContent/AuthContent";
 import Field from "../../Components/Field/Field";
 import FormButton from "../../Components/FormButton/FormButton";
 import styles from "./SignUp.module.css";
-import { data, useNavigate } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ function SignUp() {
   const navigate = useNavigate();
 
   async function signUpUser() {
-    const user = await fetch("http://localhost:3000/api/auth/sign-up", {
+    await fetch("http://localhost:3000/api/auth/sign-up", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -36,9 +36,7 @@ function SignUp() {
           <FormButton buttonText="Sign Up" />
           <div className={styles.signUpLinkToLogin}>
             Already Have an Account?
-            <a href="" className={styles.signUpLinkToLogin}>
-              Log In
-            </a>
+            <Link to="/login">Login</Link>
           </div>
         </form>
       </div>
