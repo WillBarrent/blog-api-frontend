@@ -100,3 +100,15 @@
   background-color: transparent;
   padding: 4px 8px;
 }
+
+.headerLinkToMainPage {
+  color: #FFF;
+}
+
+.headerSignUpLink {
+  color: #3b49df;
+}
+
+.headerLoginLink {
+color: #000;
+}
