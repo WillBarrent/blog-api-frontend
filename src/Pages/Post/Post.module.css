@@ -1,0 +1,31 @@
+.post {
+    display: flex;
+    justify-content: center;
+
+    padding: 16px 0;
+}
+
+.postContent {
+    width: 100%;
+    max-width: 900px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 8px 0;
+}
+
+hr {
+    margin: 8px 0;
+}
+
+li > p {
+    padding: 4px 0;
+}
+
+p {
+    padding: 8px 0;
+}
+
+ul, ol {
+    margin: 0 16px;
+}
