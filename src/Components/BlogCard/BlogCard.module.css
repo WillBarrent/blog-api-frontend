@@ -34,6 +34,14 @@
     margin-bottom: 8px;
 }
 
+.blogCardTitleLink {
+    color: #000;
+}
+
+.blogCardTitleLink:hover {
+    color: #3b49df;
+}
+
 .blogCardComment {
     display: flex;
     align-items: center;
