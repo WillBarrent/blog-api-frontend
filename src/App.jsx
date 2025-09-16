@@ -3,11 +3,14 @@ import Header from "./Components/Header/Header";
 import SignUp from "./Pages/SignUp/SignUp";
 import BlogCardsSection from "./Components/BlogCardsSection/BlogCardsSection";
 import Login from "./Pages/Login/Login";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import Post from "./Pages/Post/Post";
 
 function App() {
   const location = useLocation();
   const locationPathName = location.pathname;
+  const params = useParams();
+  const postId = params.postId;
 
   return (
     <>
@@ -16,9 +19,10 @@ function App() {
         <SignUp />
       ) : locationPathName === "/login" ? (
         <Login />
-      ) : (
-        <BlogCardsSection />
-      )}
+      ) : (postId !== undefined) ? <Post />
+        : (
+          <BlogCardsSection />
+        )}
     </>
   );
 }
