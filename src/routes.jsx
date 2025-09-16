@@ -13,6 +13,10 @@ const routes = [
     path: "/login",
     element: <App />,
   },
+  {
+    path: "/posts/:postId",
+    element: <App />,
+  }
 ];
 
 export default routes;
