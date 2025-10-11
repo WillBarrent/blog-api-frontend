@@ -8,9 +8,12 @@ import Avatar from "../../assets/avatar.jpeg";
 
 function Post() {
   const [post, setPost] = useState("");
+  const [comments, setComments] = useState("");
 
   const params = useParams();
   const postId = params.postId;
+
+  const [comment, setComment] = useState();
 
   useEffect(() => {
     let ignore = false;
@@ -28,6 +31,20 @@ function Post() {
         }
       });
 
+    fetch("http://localhost:3000/api/comments/" + postId, {
+      mode: "cors",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((result) => result.json())
+      .then((data) => {
+        if (!ignore) {
+          console.log(data.comments);
+          setComments(data.comments);
+        }
+      });
+
     return () => {
       ignore = true;
     };
@@ -36,6 +53,33 @@ function Post() {
   useEffect(() => {
     Prism.highlightAll();
   }, [post]);
+
+  async function createComment() {
+    await fetch(`http://localhost:3000/api/comments/${postId}`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content: comment }),
+    });
+
+    const comments = await fetch(
+      "http://localhost:3000/api/comments/" + postId,
+      {
+        mode: "cors",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+
+    const commentsJson = await comments.json();
+
+    setComments(commentsJson.comments);
+    setComment("");
+  }
 
   return (
     <div className={styles.post}>
@@ -57,10 +101,61 @@ function Post() {
         </div>
       </div>
       <div className={styles.commentWrapper}>
-        <div className={styles.commentsTitle}>Comments (0)</div>
+        <div className={styles.commentsTitle}>Comments ({comments.length})</div>
         <div className={styles.commentsEditor}>
-            <textarea className={styles.commentsEditorTextArea} name="" id=""></textarea>
-            <button className={styles.commentsEditorSubmitBtn}>Submit</button>
+          <textarea
+            className={styles.commentsEditorTextArea}
+            name=""
+            id=""
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+          ></textarea>
+          <button
+            onClick={() => createComment()}
+            className={styles.commentsEditorSubmitBtn}
+          >
+            Submit
+          </button>
+        </div>
+        <div className={styles.comments}>
+          {comments === ""
+            ? ""
+            : comments.map((comment) => {
+                const content = comment.content;
+                const createdAt = new Date(comment.createdAt);
+                const date = createdAt.getDate();
+                const getMonth = createdAt.getMonth();
+
+                const monthName = [
+                  "jan",
+                  "feb",
+                  "mar",
+                  "apr",
+                  "may",
+                  "jule",
+                  "june",
+                  "aug",
+                  "sep",
+                  "oct",
+                  "nov",
+                  "dec",
+                ];
+
+                return (
+                  <div className={styles.comment}>
+                    <div className={styles.commentInfo}>
+                      <div className={styles.commentAuthor}>Barrent</div>
+                      <div className={styles.commentDot}></div>
+                      <div className={styles.commentCreatedAt}>
+                        {`${date} ${monthName[getMonth]}`}.
+                      </div>
+                    </div>
+                    <div className={styles.commentContent}>{content}</div>
+                  </div>
+                );
+              })}
         </div>
       </div>
     </div>
