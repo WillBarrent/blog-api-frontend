@@ -55,6 +55,8 @@ function Post() {
   }, [post]);
 
   async function createComment() {
+    const username = localStorage.getItem("username");
+
     await fetch(`http://localhost:3000/api/comments/${postId}`, {
       method: "POST",
       mode: "cors",
@@ -62,7 +64,7 @@ function Post() {
         Authorization: localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ content: comment }),
+      body: JSON.stringify({ content: comment, username: username }),
     });
 
     const comments = await fetch(
@@ -127,6 +129,7 @@ function Post() {
                 const createdAt = new Date(comment.createdAt);
                 const date = createdAt.getDate();
                 const getMonth = createdAt.getMonth();
+                const username = comment.username;
 
                 const monthName = [
                   "jan",
@@ -146,7 +149,7 @@ function Post() {
                 return (
                   <div className={styles.comment}>
                     <div className={styles.commentInfo}>
-                      <div className={styles.commentAuthor}>Barrent</div>
+                      <div className={styles.commentAuthor}>{username}</div>
                       <div className={styles.commentDot}></div>
                       <div className={styles.commentCreatedAt}>
                         {`${date} ${monthName[getMonth]}`}.
