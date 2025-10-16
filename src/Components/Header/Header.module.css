@@ -14,101 +14,26 @@
   max-width: 900px;
 
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
 
   gap: 20px;
 }
 
-.headerContentPrimary {
-  display: flex;
-  align-items: stretch;
-  gap: 20px;
-}
-
 .headerLogo {
-  border-radius: 4px;
-
-  color: #fff;
   background-color: #000;
+  color: #fff;
   padding: 4px 8px;
-
-  font-size: 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.headerSearchBar {
-  border: 1px solid black;
-  border-radius: 8px;
-
-  display: flex;
-  align-items: center;
-}
-
-.headerSearchBarBtn {
-  padding: 8px;
-}
-
-.headerSearchBarInput {
-  border-radius: 8px;
-
-  width: 400px;
-  height: 100%;
-
-  border: none;
-  outline: none;
-
   font-size: 18px;
-  font-family: inherit;
-  padding: 8px;
-}
-
-.headerMyProfileBtn {
-  border: 1px solid #3b49df;
-  border-radius: 8px;
-  outline: none;
-
-  color: #3b49df;
-  background-color: transparent;
-  padding: 8px 16px;
-  font-size: 18px;
+  font-weight: bold;
+  border-radius: 4px;
 }
 
 .headerProfile {
-  display: flex;
-  gap: 10px;
-}
-
-.headerLogin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.headerSignUp, .headerProfileInfo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   border: 1px solid #3b49df;
-  border-radius: 4px;
-
   color: #3b49df;
-  background-color: transparent;
   padding: 4px 8px;
-}
-
-.headerLinkToMainPage {
-  color: #FFF;
-}
-
-.headerSignUpLink {
-  color: #3b49df;
-}
-
-.headerLoginLink {
-color: #000;
+  font-size: 18px;
+  border-radius: 4px;
+  outline: none;
 }
