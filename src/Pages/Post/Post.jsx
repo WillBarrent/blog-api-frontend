@@ -15,6 +15,8 @@ function Post() {
 
   const [comment, setComment] = useState();
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     let ignore = false;
 
@@ -104,23 +106,27 @@ function Post() {
       </div>
       <div className={styles.commentWrapper}>
         <div className={styles.commentsTitle}>Comments ({comments.length})</div>
-        <div className={styles.commentsEditor}>
-          <textarea
-            className={styles.commentsEditorTextArea}
-            name=""
-            id=""
-            value={comment}
-            onChange={(e) => {
-              setComment(e.target.value);
-            }}
-          ></textarea>
-          <button
-            onClick={() => createComment()}
-            className={styles.commentsEditorSubmitBtn}
-          >
-            Submit
-          </button>
-        </div>
+        {token ? (
+          <div className={styles.commentsEditor}>
+            <textarea
+              className={styles.commentsEditorTextArea}
+              name=""
+              id=""
+              value={comment}
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
+            ></textarea>
+            <button
+              onClick={() => createComment()}
+              className={styles.commentsEditorSubmitBtn}
+            >
+              Submit
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className={styles.comments}>
           {comments === ""
             ? ""
