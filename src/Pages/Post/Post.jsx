@@ -42,7 +42,6 @@ function Post() {
       .then((result) => result.json())
       .then((data) => {
         if (!ignore) {
-          console.log(data.comments);
           setComments(data.comments);
         }
       });
@@ -94,7 +93,7 @@ function Post() {
           </div>
           <div className={styles.postUserInfo}>
             <div className={styles.postUsername}>Will Barrent</div>
-            <div className={styles.postCreatedAt}>17.09.2025</div>
+            <div className={styles.postCreatedAt}>17.10.2025</div>
           </div>
         </div>
         <h1 className={styles.postTitle}>

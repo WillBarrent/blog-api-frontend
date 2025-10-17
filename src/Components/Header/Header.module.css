@@ -29,11 +29,94 @@
   border-radius: 4px;
 }
 
-.headerProfile {
+.headerAuth {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerProfileButton {
+  background-color: #fff;
   border: 1px solid #3b49df;
   color: #3b49df;
   padding: 4px 8px;
   font-size: 18px;
   border-radius: 4px;
   outline: none;
+  cursor: pointer;
+}
+
+.headerLoginLink, .headerSignUpLink {
+  background-color: #fff;
+  border: 1px solid #3b49df;
+  color: #3b49df;
+  padding: 4px 8px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.headerSignUpLink {
+  background-color: #3b49df;
+  color: #fff;
+}
+
+.headerProfile {
+  position: relative;
+}
+
+.headerProfileBar {
+  position: absolute;
+  right: 0;
+  transform: translate(0, 4px);
+
+  background-color: #fff;
+
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.1);
+}
+
+.headerProfileBarItem, .headerProfileBarUsername, .headerProfileBarEmail     {
+  padding: 8px 16px;
+}
+
+.headerProfileBarItem > a {
+  color: #000;
+  text-decoration: none;
+}
+
+.headerProfileBarItem:hover > a {
+  color: #3b49df;
+}
+
+.headerProfileBarItem:hover {
+  color: #3b49df;
+  background-color: rgba(59, 73, 223, .1);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.headerProfileBarEmail {
+  padding-top: 0;
+}
+
+.headerProfileBarUsername {
+  padding-bottom: 0;
+}
+
+.headerProfileBarUsername {
+  font-weight: 600;
+}
+
+.headerProfileBarEmail {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.headerProfileBarInfo::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
 }

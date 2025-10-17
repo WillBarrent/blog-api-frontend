@@ -16,6 +16,10 @@ const routes = [
   {
     path: "/posts/:postId",
     element: <App />,
+  },
+  {
+    path: "/log-out",
+    element: <App />
   }
 ];
 

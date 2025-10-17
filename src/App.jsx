@@ -5,6 +5,7 @@ import BlogCardsSection from "./Components/BlogCardsSection/BlogCardsSection";
 import Login from "./Pages/Login/Login";
 import { useLocation, useParams } from "react-router-dom";
 import Post from "./Pages/Post/Post";
+import LogOut from "./Pages/LogOut/LogOut";
 
 function App() {
   const location = useLocation();
@@ -19,10 +20,13 @@ function App() {
         <SignUp />
       ) : locationPathName === "/login" ? (
         <Login />
-      ) : (postId !== undefined) ? <Post />
-        : (
-          <BlogCardsSection />
-        )}
+      ) : postId !== undefined ? (
+        <Post />
+      ) : locationPathName === "/log-out" ? (
+        <LogOut />
+      ) : (
+        <BlogCardsSection />
+      )}
     </>
   );
 }
