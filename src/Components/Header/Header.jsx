@@ -25,10 +25,10 @@ function Header() {
               <div className={styles.headerProfileBar}>
                 <div className={styles.headerProfileBarInfo}>
                   <div className={styles.headerProfileBarUsername}>
-                    Will Barrent
+                    {localStorage.getItem("username")}
                   </div>
                   <div className={styles.headerProfileBarEmail}>
-                    barrent@gmail.com
+                    {localStorage.getItem("email")}
                   </div>
                 </div>
                 <div className={styles.headerProfileBarItem}>

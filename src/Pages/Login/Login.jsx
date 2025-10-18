@@ -5,11 +5,13 @@ import FormButton from "../../Components/FormButton/FormButton";
 
 import styles from "./Login.module.css";
 import { Link, redirect, useNavigate } from "react-router-dom";
+import FormErrors from "../../Components/FormErrors/FormErrors";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -30,12 +32,18 @@ function Login() {
     });
 
     const data = await user.json();
-    const token = "Bearer " + data.token;
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("username", data.username);
+    if (!data.errors) {
+      const token = "Bearer " + data.token;
 
-    navigate("/");
+      localStorage.setItem("token", token);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("email", data.email);
+
+      navigate("/");
+    } else {
+      setErrors(data.errors);
+    }
   }
 
   return (
@@ -45,7 +53,9 @@ function Login() {
         <form className={styles.loginForm} action={login}>
           <Field name="Email" handleChange={setEmail} />
           <Field name="Username" handleChange={setUsername} />
+          <FormErrors path="username" errors={errors} />
           <Field name="Password" handleChange={setPassword} />
+          <FormErrors path="password" errors={errors} />
           <FormButton buttonText="Login" />
           <div className={styles.loginLinkToSignUp}>
             Don't have an account?

@@ -5,10 +5,12 @@ import "prismjs/themes/prism.css"; // Import Prism.js default styles
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Avatar from "../../assets/avatar.jpeg";
+import FormErrors from "../../Components/FormErrors/FormErrors";
 
 function Post() {
   const [post, setPost] = useState("");
   const [comments, setComments] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const params = useParams();
   const postId = params.postId;
@@ -58,30 +60,39 @@ function Post() {
   async function createComment() {
     const username = localStorage.getItem("username");
 
-    await fetch(`http://localhost:3000/api/comments/${postId}`, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Authorization: localStorage.getItem("token"),
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ content: comment, username: username }),
-    });
-
-    const comments = await fetch(
-      "http://localhost:3000/api/comments/" + postId,
+    const postComment = await fetch(
+      `http://localhost:3000/api/comments/${postId}`,
       {
+        method: "POST",
         mode: "cors",
         headers: {
           Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({ content: comment, username: username }),
       }
     );
 
-    const commentsJson = await comments.json();
+    const commentData = await postComment.json();
 
-    setComments(commentsJson.comments);
-    setComment("");
+    if (!commentData.errors) {
+      const comments = await fetch(
+        "http://localhost:3000/api/comments/" + postId,
+        {
+          mode: "cors",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      const commentsJson = await comments.json();
+
+      setComments(commentsJson.comments);
+      setComment("");
+    } else {
+      setErrors(commentData.errors);
+    }
   }
 
   return (
@@ -116,6 +127,7 @@ function Post() {
                 setComment(e.target.value);
               }}
             ></textarea>
+            <FormErrors path="content" errors={errors}/>
             <button
               onClick={() => createComment()}
               className={styles.commentsEditorSubmitBtn}
