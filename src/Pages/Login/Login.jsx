@@ -37,8 +37,8 @@ function Login() {
       const token = "Bearer " + data.token;
 
       localStorage.setItem("token", token);
-      localStorage.setItem("username", data.username);
-      localStorage.setItem("email", data.email);
+      localStorage.setItem("username", username);
+      localStorage.setItem("email", email);
 
       navigate("/");
     } else {
