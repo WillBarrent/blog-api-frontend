@@ -6,16 +6,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Avatar from "../../assets/avatar.jpeg";
 import FormErrors from "../../Components/FormErrors/FormErrors";
+import CommentEditor from "../../Components/CommentEditor/CommentEditor";
 
 function Post() {
   const [post, setPost] = useState("");
   const [comments, setComments] = useState("");
   const [errors, setErrors] = useState([]);
+  const [comment, setComment] = useState();
 
   const params = useParams();
   const postId = params.postId;
-
-  const [comment, setComment] = useState();
 
   const token = localStorage.getItem("token");
 
@@ -44,7 +44,14 @@ function Post() {
       .then((result) => result.json())
       .then((data) => {
         if (!ignore) {
-          setComments(data.comments);
+          setComments(
+            data.comments.map((comment) => {
+              return {
+                ...comment,
+                isUpdating: false,
+              };
+            })
+          );
         }
       });
 
@@ -95,6 +102,43 @@ function Post() {
     }
   }
 
+  async function deleteComment(commentId) {
+    await fetch("http://localhost:3000/api/comments/" + commentId, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    });
+
+    const updatedComments = comments.filter((comment) => {
+      if (comment.id !== commentId) {
+        return comment;
+      }
+    });
+
+    setComments(updatedComments);
+  }
+
+  function turnCommentUpdate(commentId) {
+    const updatedComments = comments.map((comment) => {
+      if (comment.id === commentId) {
+        return {
+          ...comment,
+          isUpdating: !comment.isUpdating,
+        };
+      }
+
+      return comment;
+    });
+
+    setComments(updatedComments);
+  }
+
+  function updateComment() {
+    
+  }
+
   return (
     <div className={styles.post}>
       <div className={styles.postWrapper}>
@@ -127,7 +171,7 @@ function Post() {
                 setComment(e.target.value);
               }}
             ></textarea>
-            <FormErrors path="content" errors={errors}/>
+            <FormErrors path="content" errors={errors} />
             <button
               onClick={() => createComment()}
               className={styles.commentsEditorSubmitBtn}
@@ -163,14 +207,40 @@ function Post() {
                   "dec",
                 ];
 
-                return (
+                return comment.isUpdating ? (
+                  <CommentEditor errors={errors} content={comment.content} turnCommentUpdate={turnCommentUpdate}/>
+                ) : (
                   <div className={styles.comment}>
                     <div className={styles.commentInfo}>
-                      <div className={styles.commentAuthor}>{username}</div>
-                      <div className={styles.commentDot}></div>
-                      <div className={styles.commentCreatedAt}>
-                        {`${date} ${monthName[getMonth]}`}.
+                      <div className={styles.commentUserInfo}>
+                        <div className={styles.commentAuthor}>{username}</div>
+                        <div className={styles.commentDot}></div>
+                        <div className={styles.commentCreatedAt}>
+                          {`${date} ${monthName[getMonth]}`}.
+                        </div>
                       </div>
+                      {localStorage.getItem("username") === username ? (
+                        <div className={styles.commentActions}>
+                          <button
+                            onClick={() => {
+                              deleteComment(comment.id);
+                            }}
+                            className={styles.commentDeleteBtn}
+                          >
+                            Delete
+                          </button>
+                          <button
+                            onClick={() => {
+                              turnCommentUpdate(comment.id);
+                            }}
+                            className={styles.commentEditBtn}
+                          >
+                            Edit
+                          </button>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                     <div className={styles.commentContent}>{content}</div>
                   </div>

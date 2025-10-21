@@ -106,7 +106,13 @@ ol {
     outline: none;
 }
 
-.commentsEditorSubmitBtn {
+.commentsEditorActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.commentsEditorSubmitBtn, .commentsEditorCancelBtn {
     margin-top: 8px;
 
     outline: none;
@@ -118,6 +124,10 @@ ol {
     background-color: #3b49df;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.commentsEditorCancelBtn {
+  background-color: red;
 }
 
 .comments {
@@ -135,6 +145,36 @@ ol {
 }
 
 .commentInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commentActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.commentDeleteBtn, .commentEditBtn {
+  outline: none;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.commentDeleteBtn {
+  background-color: red;
+}
+
+.commentEditBtn {
+  background-color: green;
+}
+
+.commentUserInfo {
   display: flex;
   align-items: center;
   gap: 8px;

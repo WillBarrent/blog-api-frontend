@@ -1,0 +1,38 @@
+.commentsEditorTextArea {
+    display: block;
+    resize: none;
+    width: 100%;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    padding: 16px 8px;
+}
+
+.commentsEditorTextArea:focus {
+    outline: none;
+}
+
+.commentsEditorActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.commentsEditorSubmitBtn, .commentsEditorCancelBtn {
+    margin-top: 8px;
+
+    outline: none;
+    border: none;
+
+    padding: 8px 16px;
+
+    color: #fff;
+    background-color: #3b49df;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.commentsEditorCancelBtn {
+  background-color: red;
+}
