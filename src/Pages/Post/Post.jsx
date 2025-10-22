@@ -129,14 +129,13 @@ function Post() {
         };
       }
 
-      return comment;
+      return {
+        ...comment,
+        isUpdating: false,
+      };
     });
 
     setComments(updatedComments);
-  }
-
-  function updateComment() {
-    
   }
 
   return (
@@ -208,7 +207,13 @@ function Post() {
                 ];
 
                 return comment.isUpdating ? (
-                  <CommentEditor errors={errors} content={comment.content} turnCommentUpdate={turnCommentUpdate}/>
+                  <CommentEditor
+                    content={comment.content}
+                    turnCommentUpdate={turnCommentUpdate}
+                    commentId={comment.id}
+                    postId={postId}
+                    setComments={setComments}
+                  />
                 ) : (
                   <div className={styles.comment}>
                     <div className={styles.commentInfo}>
