@@ -146,8 +146,24 @@ function Post() {
             <img className={styles.postAvatarImg} src={Avatar} alt="" />
           </div>
           <div className={styles.postUserInfo}>
-            <div className={styles.postUsername}>Will Barrent</div>
-            <div className={styles.postCreatedAt}>17.10.2025</div>
+            <div className={styles.postUsername}>
+              {parse(post === "" ? "" : post.author.username)}
+            </div>
+            <div className={styles.postCreatedAt}>
+              {(() => {
+                if (post === "") {
+                  return "";
+                }
+
+                const date = new Date(post.createdAt);
+                const month = date.getMonth();
+                const createdAt = `${date.getDate()}.${
+                  month % 10 === month ? "0" + month : month
+                }.${date.getFullYear()}`;
+
+                return createdAt;
+              })()}
+            </div>
           </div>
         </div>
         <h1 className={styles.postTitle}>
