@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AuthContent from "../../Components/AuthContent/AuthContent";
-import Field from "../../Components/Field/Field";
+import AuthField from "../../Components/AuthField/AuthField";
 import FormButton from "../../Components/FormButton/FormButton";
 import styles from "./SignUp.module.css";
 import { data, Link, useNavigate } from "react-router-dom";
@@ -45,11 +45,11 @@ function SignUp() {
       <div className={styles.signUp}>
         <AuthContent />
         <form className={styles.signUpForm} action={signUpUser}>
-          <Field name="Email" handleChange={setEmail} />
+          <AuthField name="Email" handleChange={setEmail} />
           <FormErrors path="email" errors={errors}/>
-          <Field name="Username" handleChange={setUsername} />
+          <AuthField name="Username" handleChange={setUsername} />
           <FormErrors path="username" errors={errors}/>
-          <Field name="Password" handleChange={setPassword} />
+          <AuthField name="Password" handleChange={setPassword} />
           <FormErrors path="password" errors={errors}/>
           <FormButton buttonText="Sign Up" />
           <div className={styles.signUpLinkToLogin}>

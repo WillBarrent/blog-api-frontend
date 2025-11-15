@@ -1,5 +1,5 @@
-import styles from "./BlogCardsSection.module.css";
-import BlogCard from "../BlogCard/BlogCard";
+import styles from "./Home.module.css";
+import BlogCard from "../../Components/BlogCard/BlogCard";
 import { useState } from "react";
 import { useEffect } from "react";
 

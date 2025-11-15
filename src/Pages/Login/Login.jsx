@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import AuthContent from "../../Components/AuthContent/AuthContent";
-import Field from "../../Components/Field/Field";
-import FormButton from "../../Components/FormButton/FormButton";
-
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import AuthContent from "../../Components/AuthContent/AuthContent";
+import AuthField from "../../Components/AuthField/AuthField";
+import FormButton from "../../Components/FormButton/FormButton";
 import FormErrors from "../../Components/FormErrors/FormErrors";
 
 function Login() {
@@ -51,10 +50,10 @@ function Login() {
       <div className={styles.login}>
         <AuthContent />
         <form className={styles.loginForm} action={login}>
-          <Field name="Email" handleChange={setEmail} />
-          <Field name="Username" handleChange={setUsername} />
+          <AuthField name="Email" handleChange={setEmail} />
+          <AuthField name="Username" handleChange={setUsername} />
           <FormErrors path="username" errors={errors} />
-          <Field name="Password" handleChange={setPassword} />
+          <AuthField name="Password" handleChange={setPassword} />
           <FormErrors path="password" errors={errors} />
           <FormButton buttonText="Login" />
           <div className={styles.loginLinkToSignUp}>

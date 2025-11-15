@@ -1,0 +1,59 @@
+.comment {
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.commentInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commentActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.commentDeleteBtn, .commentEditBtn {
+  outline: none;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.commentDeleteBtn {
+  background-color: red;
+}
+
+.commentEditBtn {
+  background-color: green;
+}
+
+.commentUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 8px;
+}
+
+.commentDot {
+  background-color: #afabab;
+  width: 4px;
+  height: 4px;
+  border-radius: 100px;
+}
+
+.commentAuthor {
+  font-weight: 600;
+}
+
+.commentCreatedAt {
+  color: #afabab;
+  font-size: 14px;
+}

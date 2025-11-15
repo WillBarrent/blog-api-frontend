@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./Components/Header/Header";
 import SignUp from "./Pages/SignUp/SignUp";
-import BlogCardsSection from "./Components/BlogCardsSection/BlogCardsSection";
+import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import { useLocation, useParams } from "react-router-dom";
 import Post from "./Pages/Post/Post";
@@ -25,7 +25,7 @@ function App() {
       ) : locationPathName === "/log-out" ? (
         <LogOut />
       ) : (
-        <BlogCardsSection />
+        <Home />
       )}
     </>
   );

@@ -1,6 +1,6 @@
-import styles from "./Field.module.css";
+import styles from "./AuthField.module.css";
 
-function Field({ name, handleChange }) {
+function AuthField({ name, handleChange }) {
   return (
     <div className={styles.field}>
       <label className={styles.fieldLabel} htmlFor={`field-${name}`}>
@@ -16,4 +16,4 @@ function Field({ name, handleChange }) {
   );
 }
 
-export default Field;
+export default AuthField;

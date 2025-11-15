@@ -1,0 +1,51 @@
+.commentWrapper {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  padding: 16px 32px;
+
+  width: 100%;
+  max-width: 900px;
+  background-color: #fff;
+}
+
+.commentsTitle {
+  font-weight: 600;
+  font-size: 24px;
+
+  margin-bottom: 16px;
+}
+
+.comments {
+  margin-top: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+
+.commentsEditorTextArea, .commentsCreatorTextArea {
+    display: block;
+    resize: none;
+    width: 100%;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    padding: 16px 8px;
+}
+
+.commentsEditorSubmitBtn, .commentsCreatorSubmitBtn {
+    margin-top: 8px;
+
+    outline: none;
+    border: none;
+
+    padding: 8px 16px;
+
+    color: #fff;
+    background-color: #3b49df;
+    border-radius: 4px;
+    cursor: pointer;
+}
